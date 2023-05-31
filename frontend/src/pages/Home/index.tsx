@@ -4,11 +4,11 @@ import { Card, Col, Row } from "antd";
 function Home() {
     return (
         <Row>
-            <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+            <Col xs={24}>
                 <Card
                     title="Greeting"
                     bordered={false}
-                    style={{ maxWidth: 600, margin: "auto" }}
+                    style={{ maxWidth: 1200, margin: "auto" }}
                 >
                     <p>Welcome!</p>
                 </Card>

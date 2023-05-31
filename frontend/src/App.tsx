@@ -2,8 +2,10 @@ import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import MainLayout from "./components/MainLayout";
-import Home from "./pages/Home";
+import Airports from "./pages/Airports";
 import ErrorPage from "./pages/ErrorPage";
+import Flights from "./pages/Flights";
+import Home from "./pages/Home";
 
 import "./App.css";
 
@@ -16,6 +18,14 @@ const router = createBrowserRouter([
             {
                 element: <Home />,
                 index: true,
+            },
+            {
+                path: "/flights",
+                element: <Flights />,
+            },
+            {
+                path: "/airports",
+                element: <Airports />,
             },
         ],
     },
