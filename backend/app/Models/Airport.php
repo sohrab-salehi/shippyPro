@@ -10,6 +10,10 @@ class Airport extends Model
 
     protected $fillable = ['name', 'code', 'lat', 'lng'];
 
+    public static $rules = [
+        'code' => 'required|unique:airports,code',
+    ];
+
     /**
      * Get the flights departing from the airport.
      */

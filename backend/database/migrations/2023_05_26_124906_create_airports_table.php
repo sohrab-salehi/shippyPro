@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('airports', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('code');
-            $table->double('lat');
-            $table->double('lng');
+            $table->string('code')->unique();
+            $table->decimal('lat', 10, 8);
+            $table->decimal('lng', 11, 8);
             $table->timestamps();
         });
     }

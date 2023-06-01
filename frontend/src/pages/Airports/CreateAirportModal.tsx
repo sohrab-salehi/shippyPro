@@ -25,7 +25,7 @@ function CreateAirportModal({
                         updateAirports();
                         form.resetFields();
                     },
-                    (error) => message.error(error)
+                    (error) => message.error(error.message)
                 );
                 setLoading(false);
                 closeModal();

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card, Col, Row, Space, Table } from "antd";
+import { Button, Card, Col, Row, Space, Table, message } from "antd";
 import type { ColumnsType } from "antd/es/table";
 
 import { PlusCircleOutlined } from "@ant-design/icons";
@@ -12,7 +12,10 @@ function Airports() {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const updateAirportsList = () => {
-        getAirports().then((result) => setAirports(result.data));
+        getAirports().then(
+            (result) => setAirports(result.data),
+            (error) => message.error(error.message)
+        );
     };
 
     useEffect(() => {
