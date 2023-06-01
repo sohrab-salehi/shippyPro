@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import MainLayout from "./components/MainLayout";
 import Airports from "./pages/Airports";
+import BestFlight from "./pages/BestFlight";
 import ErrorPage from "./pages/ErrorPage";
 import Flights from "./pages/Flights";
 import Home from "./pages/Home";
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
             {
                 path: "/airports",
                 element: <Airports />,
+            },
+            {
+                path: "/best-flight",
+                element: <BestFlight />,
             },
         ],
     },

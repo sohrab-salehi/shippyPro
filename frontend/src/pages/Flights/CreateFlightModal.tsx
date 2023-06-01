@@ -73,7 +73,7 @@ function CreateFlightModal({
                 >
                     <Select
                         showSearch
-                        placeholder="Select a airport"
+                        placeholder="Select an airport"
                         optionFilterProp="children"
                         filterOption={(input, option) =>
                             (option?.label ?? "")

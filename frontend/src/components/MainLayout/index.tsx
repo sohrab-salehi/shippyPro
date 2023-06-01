@@ -51,7 +51,7 @@ function MainLayout(): JSX.Element {
                             {
                                 key: "best-flights",
                                 label: (
-                                    <Link to="/best-flights">Best Flights</Link>
+                                    <Link to="/best-flight">Best Flight</Link>
                                 ),
                             },
                         ]}

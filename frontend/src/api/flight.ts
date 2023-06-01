@@ -16,4 +16,16 @@ export const createFlight = (newFlight: iFlight) => {
     return result;
 };
 
+export const findBestFlight = (
+    depAirportCode: string,
+    arrAirportCode: string
+) => {
+    const result = server
+        .get(`/flights/most-convenient/${depAirportCode}/${arrAirportCode}`)
+        .then((response) => {
+            return response;
+        });
+    return result;
+};
+
 export default getFlights;
