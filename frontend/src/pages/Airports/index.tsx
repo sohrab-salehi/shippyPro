@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card, Col, Row, Space, Table, message } from "antd";
 import type { ColumnsType } from "antd/es/table";
-
 import { PlusCircleOutlined } from "@ant-design/icons";
+
 import CreateAirportModal from "./CreateAirportModal";
 import iAirport from "../../types/iAirport";
 import getAirports from "../../api/airport";
