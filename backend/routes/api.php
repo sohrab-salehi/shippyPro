@@ -31,5 +31,4 @@ Route::put('/flights/{id}', [FlightController::class, 'update']);
 Route::delete('/flights/{id}', [FlightController::class, 'destroy']);
 
 // Additional routes for API functionality
-Route::get('/flights/lowest-price', [FlightController::class, 'getLowestPrice']);
-Route::get('/flights/most-convenient', [FlightController::class, 'getMostConvenientFlights']);
+Route::get('/flights/most-convenient/{departure}/{arrival}', [FlightController::class, 'getMostConvenientFlights']);

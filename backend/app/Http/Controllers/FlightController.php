@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Flight;
 use App\Models\Airport;
+use Illuminate\Support\Facades\DB;
 
 class FlightController extends Controller
 {
@@ -88,29 +89,28 @@ class FlightController extends Controller
     }
 
     /**
-     * Calculate the lowest price for flights.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function getLowestPrice()
-    {
-        $lowestPrice = Flight::min('price');
-
-        return response()->json(['lowest_price' => $lowestPrice]);
-    }
-
-    /**
      * Retrieve the most convenient flights.
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getMostConvenientFlights()
-    {
-        $mostConvenientFlights = Flight::orderBy('price')
-            ->orderBy('code_departure')
-            ->orderBy('code_arrival')
-            ->get();
 
-        return response()->json($mostConvenientFlights);
+    public function getMostConvenientFlights($departure, $arrival)
+    {
+        $query = "SELECT f1.code_departure, '' AS stop_over, f1.code_arrival, f1.price
+              FROM flights AS f1
+              WHERE f1.code_departure = :departureCode1
+              AND f1.code_arrival = :arrivalCode1
+              UNION
+              SELECT f3.code_departure, f3.code_arrival AS stop_over, f4.code_arrival, (f3.price + f4.price)
+              FROM flights AS f3
+              JOIN flights AS f4 ON f3.code_arrival = f4.code_departure
+              WHERE f3.code_departure = :departureCode2
+              AND f4.code_arrival = :arrivalCode2
+              ORDER BY price ASC
+              LIMIT 1";
+
+        $result = DB::select($query, ['departureCode1' => $departure, 'arrivalCode1' => $arrival, 'departureCode2' => $departure, 'arrivalCode2' => $arrival]);
+
+        return response()->json($result);
     }
 }
