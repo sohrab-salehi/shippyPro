@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card, Col, message, Row, Select, Table, Space } from "antd";
 import type { ColumnsType } from "antd/es/table";
-
 import { SearchOutlined } from "@ant-design/icons";
-import getAirports from "../../api/airport";
-import iAirport from "../../types/iAirport";
+
 import { findBestFlight } from "../../api/flight";
+import getAirports from "../../api/airport";
+import AirportDetail from "../../components/AirportDetail";
+import iAirport from "../../types/iAirport";
 import iFlight from "../../types/iFlight";
 
 function BestFlight() {
@@ -50,36 +51,24 @@ function BestFlight() {
         updateAirportsList();
     }, []);
 
-    const findAirportName = (code: string) => {
-        const selectedAirport = airports.find(
-            (airport) => airport.code === code
-        );
-        return (
-            <>
-                <div>{selectedAirport?.name}</div>
-                <div style={{ color: "GrayText", fontSize: 12 }}>{code}</div>
-            </>
-        );
-    };
-
     const columns: ColumnsType<iFlight> = [
         {
             title: "Departure",
             dataIndex: "code_departure",
             key: "code_departure",
-            render: (code) => findAirportName(code),
+            render: (code) => <AirportDetail code={code} airports={airports} />,
         },
         {
             title: "Stop Over",
             dataIndex: "stop_over",
             key: "stop_over",
-            render: (code) => findAirportName(code),
+            render: (code) => <AirportDetail code={code} airports={airports} />,
         },
         {
             title: "Arrival",
             dataIndex: "code_arrival",
             key: "code_arrival",
-            render: (code) => findAirportName(code),
+            render: (code) => <AirportDetail code={code} airports={airports} />,
         },
         {
             title: "Price",

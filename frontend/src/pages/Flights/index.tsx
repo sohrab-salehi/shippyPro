@@ -4,6 +4,7 @@ import type { ColumnsType } from "antd/es/table";
 import { PlusCircleOutlined } from "@ant-design/icons";
 
 import CreateFlightModal from "./CreateFlightModal";
+import AirportDetail from "../../components/AirportDetail";
 import getFlights from "../../api/flight";
 import getAirports from "../../api/airport";
 import iFlight from "../../types/iFlight";
@@ -29,30 +30,18 @@ function Flights() {
         updateFlightsList();
     }, []);
 
-    const findAirportName = (code: string) => {
-        const selectedAirport = airports.find(
-            (airport) => airport.code === code
-        );
-        return (
-            <>
-                <div>{selectedAirport?.name}</div>
-                <div style={{ color: "GrayText", fontSize: 12 }}>{code}</div>
-            </>
-        );
-    };
-
     const columns: ColumnsType<iFlight> = [
         {
             title: "Departure",
             dataIndex: "code_departure",
             key: "code_departure",
-            render: (code) => findAirportName(code),
+            render: (code) => <AirportDetail code={code} airports={airports} />,
         },
         {
             title: "Arrival",
             dataIndex: "code_arrival",
             key: "code_arrival",
-            render: (code) => findAirportName(code),
+            render: (code) => <AirportDetail code={code} airports={airports} />,
         },
         {
             title: "Price",
