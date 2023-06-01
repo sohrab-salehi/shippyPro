@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('airports', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('code');
+            $table->double('lat');
+            $table->double('lng');
             $table->timestamps();
         });
     }

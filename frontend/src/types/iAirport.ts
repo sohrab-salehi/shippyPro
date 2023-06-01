@@ -1,7 +1,7 @@
 export default interface iAirport {
-    id: string;
+    id?: string;
     name: string;
     code: string;
-    latitude: number;
-    longitude: number;
+    lat: number;
+    lng: number;
 }
